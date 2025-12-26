@@ -36,6 +36,7 @@ This setup is designed to be **reusable and extensible** for future projects.
 - All visual assets used in this repository are **free assets**
 - Assets are **not created by me**
 - Credits and download links are provided below
+- Asset Artist: https://xzany.itch.io/top-down-adventurer-character
 
 > This repository does **not** include paid assets to respect the original creators.
 
@@ -44,7 +45,7 @@ This setup is designed to be **reusable and extensible** for future projects.
 ## 📚 Learning Resources
 This project is inspired by a YouTube tutorial series.
 
-- Tutorial Author: *(credited in commits / future notes)*
+- Tutorial Author: https://www.youtube.com/watch?v=QPeycNt29tY&list=PLfcCiyd_V9GH8M9xd_QKlyU8jryGcy3Xa)
 - Platform: YouTube
 - Core logic has been **modified and adapted**, not copied 1:1
 
