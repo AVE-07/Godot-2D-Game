@@ -1,2 +1,87 @@
-# Godot-2D-Game
-A learning project building a 2D game in Godot, including FSM, player control, animation, and world systems
+# Godot 2D Game – Learning Project
+
+🚀 This repository is a **learning-focused Godot 2D project**, built as part of my journey into game development.
+
+The main goal of this project is to deeply understand **core game programming concepts**, especially:
+- Finite State Machine (FSM)
+- Player movement & animation handling
+- Clean code structure in Godot (Node-based architecture)
+
+This is **not a finished game**, but a growing sandbox where features are added incrementally as I progress through learning materials.
+
+---
+
+## 🎯 Project Focus
+- Modular **Finite State Machine (FSM)** architecture
+- Separated states (Idle, Run, etc.) for scalability
+- Clear responsibility split between:
+  - Player (core data & movement)
+  - StateMachine (logic controller)
+  - States (behavior units)
+
+This setup is designed to be **reusable and extensible** for future projects.
+
+---
+
+## 🧠 What I’ve Learned So Far
+- How FSM works in Godot using Nodes
+- State transitions via return-based logic
+- Handling input, process, and physics per state
+- Direction-based animation handling (4-directional)
+- Defensive initialization patterns
+
+---
+
+## 📦 Assets & Credits
+- All visual assets used in this repository are **free assets**
+- Assets are **not created by me**
+- Credits and download links are provided below
+
+> This repository does **not** include paid assets to respect the original creators.
+
+---
+
+## 📚 Learning Resources
+This project is inspired by a YouTube tutorial series.
+
+- Tutorial Author: *(credited in commits / future notes)*
+- Platform: YouTube
+- Core logic has been **modified and adapted**, not copied 1:1
+
+Key differences from the tutorial:
+- 4-directional movement instead of 3-direction
+- Custom animation handling
+- Removed sprite scaling logic (left/right handled via animations)
+- Code comments rewritten for personal understanding
+
+---
+
+## 🛠 Tech Stack
+- Engine: **Godot 4.x**
+- Language: **GDScript**
+- Version Control: **Git + GitHub**
+
+---
+
+## 📈 Progress Policy
+- This repository will be updated **incrementally**
+- Commits represent learning milestones, not final features
+- Code quality will evolve alongside my understanding
+
+---
+
+## ⚠️ Disclaimer
+This project is purely for **educational purposes**.
+If you’re learning Godot too, feel free to explore — but always support original asset creators ❤️
+
+---
+
+## ✨ Future Plans
+- Add more FSM states (Attack, Roll, Hurt, Death)
+- TileMap & world interaction
+- Basic enemy AI
+- Original assets (later phase)
+
+---
+
+> Learning in public. Shipping progress, not perfection.
