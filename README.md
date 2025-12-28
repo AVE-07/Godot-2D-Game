@@ -37,6 +37,7 @@ This setup is designed to be **reusable and extensible** for future projects.
 - Assets are **not created by me**
 - Credits and download links are provided below
 - Asset Artist: https://xzany.itch.io/top-down-adventurer-character
+- Asset Artist (Map): https://michaelgames.itch.io/2d-action-adventure-rpg-assets
 
 > This repository does **not** include paid assets to respect the original creators.
 
@@ -58,7 +59,7 @@ Key differences from the tutorial:
 ---
 
 ## 🛠 Tech Stack
-- Engine: **Godot 4.x**
+- Engine: **Godot 4.5.1**
 - Language: **GDScript**
 - Version Control: **Git + GitHub**
 
