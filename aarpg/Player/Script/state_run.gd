@@ -26,9 +26,10 @@ func Process( _delta : float) -> State:
 	if player.direction == Vector2.ZERO:
 		return idle
 	
-	#
+	#rumus untuk atur kecepatan player
 	player.velocity = player.direction.normalized() * move_speed
 	
+	#kalo arah berubah animasi karakter jadi "run"
 	if player.SetDirection():
 		player.UpdateAnimation("run")
 	return null

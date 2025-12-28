@@ -22,8 +22,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	#dipakai untuk baca input dengan nilai -1..1
-	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	#direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	#direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	#mengatur supaya speed diagonal setara sama speed 4 arah utama, dan membaca input -1..1 (update)
+	direction = Vector2(
+		Input.get_axis("left","right"),
+		Input.get_axis("up", "down")
+	).normalized()
 	pass
 
 
