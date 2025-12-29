@@ -29,6 +29,10 @@ This setup is designed to be **reusable and extensible** for future projects.
 - Handling input, process, and physics per state
 - Direction-based animation handling (4-directional)
 - Defensive initialization patterns
+- Making a tilemap and collision system
+- Adding a new layer of effect on character attack (4-directional)
+- Using a key frame in AnimatedPlayer2D for making a smooth animation with different position
+- Adding a sound on attack animation
 
 ---
 
