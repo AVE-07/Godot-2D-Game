@@ -3,12 +3,14 @@ class_name State_Idle extends State
 
 #referensi untuk transisi state ke state ini
 @onready var run: State_Run = $"../Run"
+@onready var attack: State_Attack = $"../Attack"
 
 #saat state dimulai
 ## What happens when the player enters this state?
 func Enter() -> void:
 	#saat state dimulai animasi akan berubah menjadi "idle"
 	player.UpdateAnimation("idle")
+	
 
 
 #saat state keluar, bisa diubah kedepannya
@@ -34,4 +36,6 @@ func Physic( _delta : float) -> State:
 
 ## What happens with input events in this state?
 func HandleInput( _event: InputEvent) -> State:
+	if _event.is_action_pressed("attack"):
+		return attack
 	return null

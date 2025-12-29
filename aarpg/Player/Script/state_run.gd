@@ -5,6 +5,7 @@ class_name State_Run extends State
 @export var move_speed = 100.0
 #referensi untuk transisi state ke state ini
 @onready var idle: State_Idle = $"../Idle"
+@onready var attack: State_Attack = $"../Attack"
 
 
 #saat state dimulai
@@ -41,4 +42,6 @@ func Physic( _delta : float) -> State:
 
 ## What happens with input events in this state?
 func HandleInput( _event: InputEvent) -> State:
+	if _event.is_action_pressed("attack"):
+		return attack
 	return null
