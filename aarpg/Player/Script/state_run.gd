@@ -1,4 +1,4 @@
-#setup core state_run extends sebagai state
+#setup core state_run inherit dari state
 class_name State_Run extends State
 
 #export speed supaya bisa diubah nanti setiap state, jadi misal ada state sneak bakal bisa jadi 30
@@ -42,6 +42,7 @@ func Physic( _delta : float) -> State:
 
 ## What happens with input events in this state?
 func HandleInput( _event: InputEvent) -> State:
+	#kalo player menekan tombol untuk "attack", maka karakter akan attack
 	if _event.is_action_pressed("attack"):
 		return attack
 	return null

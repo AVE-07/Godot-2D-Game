@@ -10,7 +10,9 @@ var direction : Vector2 = Vector2.ZERO
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var state_machine: PlayerStateMachine = $StateMachine
 
-#dipakai untuk ode pertama kali dipakai
+signal DirectionChange( new_direction : Vector2 )
+
+#dipakai untuk node pertama kali dipakai
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#state_machine bisa memakai value yang ada di player tetapi lewat contract bukan random call
@@ -20,7 +22,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	#dipakai untuk baca input dengan nilai -1..1
 	#direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	#direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
@@ -33,7 +34,6 @@ func _process(delta: float) -> void:
 
 
 func _physics_process( delta ):
-	#
 	move_and_slide()
 
 
@@ -43,8 +43,7 @@ func SetDirection() -> bool:
 	#kalo character gak gerak, character gak berubah arahnya
 	if direction == Vector2.ZERO:
 		return false
-	
-	#ngunci karakter supaya cuman bisa punya 4 direction aja, dan ignore diagnoal move
+	#ngunci karakter supaya cuman bisa punya 4 direction aja, dan ignore diagonal move
 	if direction.y == 0:
 		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
 	elif direction.x == 0:
@@ -56,6 +55,7 @@ func SetDirection() -> bool:
 	
 	#saat nilai new_dir berubah, cardinal_direction akan pakai nilai new_dir sebagai nilai baru
 	cardinal_direction = new_dir
+	DirectionChange.emit( new_dir )
 	return true
 
 
