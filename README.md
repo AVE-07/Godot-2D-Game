@@ -33,6 +33,8 @@ This setup is designed to be **reusable and extensible** for future projects.
 - Adding a new layer of effect on character attack (4-directional)
 - Using a key frame in AnimatedPlayer2D for making a smooth animation with different position
 - Adding a sound on attack animation
+- Using monitoring and monitorable in inspector Area2D
+- Making a hitbox, hurtbox and attackable object
 
 ---
 
