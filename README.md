@@ -35,6 +35,7 @@ This setup is designed to be **reusable and extensible** for future projects.
 - Adding a sound on attack animation
 - Using monitoring and monitorable in inspector Area2D
 - Making a hitbox, hurtbox and attackable object
+- Debugging about diagonal direction
 
 ---
 
