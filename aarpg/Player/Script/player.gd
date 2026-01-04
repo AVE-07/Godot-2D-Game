@@ -1,15 +1,18 @@
-#setup nama script 
+#setup core player inherit dari CharacterBody2D
 class_name Player extends CharacterBody2D
 
 #mengatur var arah, direction = input mentah(analog, diagonal), cardinal_direction = 4 arah utama
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
+#array direction referensi arah 4 arah utama
+const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
 #pemanggilan depedency yang lain
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var state_machine: PlayerStateMachine = $StateMachine
 
+#signal saat arah diubah
 signal DirectionChange( new_direction : Vector2 )
 
 #dipakai untuk node pertama kali dipakai
@@ -38,16 +41,13 @@ func _physics_process( delta ):
 
 
 func SetDirection() -> bool:
-	#deklarasi new_dir itu cardinal_direction
-	var new_dir : Vector2 = cardinal_direction
 	#kalo character gak gerak, character gak berubah arahnya
 	if direction == Vector2.ZERO:
 		return false
-	#ngunci karakter supaya cuman bisa punya 4 direction aja, dan ignore diagonal move
-	if direction.y == 0:
-		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
-	elif direction.x == 0:
-		new_dir = Vector2.UP if direction.y < 0 else  Vector2.DOWN
+	#konversi vector input ke index 4 arah utama
+	# + cardinal_direction * 0.1 buat bias lebih ke arah cardinalnya supaya transisi lebih stabil untuk diagonal
+	var direction_id : int = int( round( ( direction + cardinal_direction * 0.1 ).angle() / TAU * DIR_4.size() ) )
+	var new_dir = DIR_4[ direction_id ]
 	
 	#kalo new_dir hasilnya tetep sama kayak cardinal_direction berhenti
 	if new_dir == cardinal_direction:
@@ -55,6 +55,7 @@ func SetDirection() -> bool:
 	
 	#saat nilai new_dir berubah, cardinal_direction akan pakai nilai new_dir sebagai nilai baru
 	cardinal_direction = new_dir
+	#saat arah berubah kasih pemberitahuan beserta arahnya
 	DirectionChange.emit( new_dir )
 	return true
 

@@ -17,7 +17,7 @@ var attacking : bool = false
 #referensi untuk transisi state ke state ini
 @onready var run: State_Run = $"../Run"
 @onready var idle: State_Idle = $"../Idle"
-@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
+@onready var hurt_box: HurtBox = %AttackHurtBox
 
 
 #saat state dimulai
@@ -37,7 +37,9 @@ func Enter() -> void:
 	audio.play()
 	#mengubah nilai attacking jadi true
 	attacking = true
+	#membuat delay code untuk aktif setelah 0.075 detik
 	await get_tree().create_timer( 0.075 ).timeout
+	#mengaktifkan fungsi monitoring hurtbox yang ada di inpector
 	hurt_box.monitoring = true
 
 
@@ -47,6 +49,7 @@ func Exit() -> void:
 	#setelah keluar dari attack memutus sinyal, supaya animasi tidak aktif saat animasi lain
 	animation_player.animation_finished.disconnect( EndAttack )
 	attacking = false
+	#mematikan fungsi monitoring yang ada di inspector
 	hurt_box.monitoring = false
 	pass
 
