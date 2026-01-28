@@ -1,8 +1,11 @@
+#mendefinisikan class dengan nama EnemyState dengan mewarisi Node
 class_name EnemyState extends Node
 
 
 ## Stores a reference to the enemy that this state belongs to
+#untuk mengetahui enemy apa yang dikendalikan
 var enemy : Enemy
+#state machine yang akan mengatur pergantian state
 var state_machine : EnemyStateMachine
 
 
