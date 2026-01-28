@@ -37,6 +37,7 @@ This setup is designed to be **reusable and extensible** for future projects.
 - Making a hitbox, hurtbox and attackable object
 - Debugging about diagonal direction
 - Updating a boundaries for Camera2D
+- making enemy entity
 
 ---
 
