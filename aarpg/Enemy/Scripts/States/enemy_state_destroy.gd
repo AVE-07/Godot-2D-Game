@@ -11,6 +11,7 @@ class_name EnemyStateDestroy extends EnemyState
 @export_category( "AI" )
 #mengatur arah awal state
 var _direction : Vector2
+var _damage_position : Vector2
 
 #state wonder tidak memerlukan setup global
 ## What happens when we Initialize this state?
@@ -22,7 +23,7 @@ func init() -> void:
 ## What happens when the enemy enters this state?
 func enter() -> void:
 	enemy.invulnerable = true
-	_direction = enemy.global_position.direction_to( enemy.player.global_position )
+	_direction = enemy.global_position.direction_to( _damage_position )
 	#menentukan arah
 	enemy.set_direction( _direction )
 	#menentukan gerak fisik
@@ -49,7 +50,8 @@ func physics( _delta: float ) -> EnemyState:
 	return null
 
 
-func _on_enemy_destroyed() -> void:
+func _on_enemy_destroyed( hurt_box : HurtBox ) -> void:
+	_damage_position = hurt_box.global_position
 	state_machine.change_state( self )
 
 

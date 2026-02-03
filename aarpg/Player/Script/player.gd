@@ -1,26 +1,35 @@
 #setup core player inherit dari CharacterBody2D
 class_name Player extends CharacterBody2D
 
+#signal saat arah diubah
+signal DirectionChange( new_direction : Vector2 )
+signal player_damaged( hurt_box : HurtBox )
+
 #mengatur var arah, direction = input mentah(analog, diagonal), cardinal_direction = 4 arah utama
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
+var invulnerable : bool = false
+var hp : int = 6
+var max_hp : int = 6
+
 #array direction referensi arah 4 arah utama
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
 #pemanggilan depedency yang lain
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var effect_anim_player: AnimationPlayer = $EffectAnimPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var hit_box: HitBox = $HitBox
 @onready var state_machine: PlayerStateMachine = $StateMachine
-
-#signal saat arah diubah
-signal DirectionChange( new_direction : Vector2 )
 
 #dipakai untuk node pertama kali dipakai
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PlayerManager.player = self
 	#state_machine bisa memakai value yang ada di player tetapi lewat contract bukan random call
-	state_machine.Initialize(self)
+	state_machine.Initialize( self )
+	hit_box.Damaged.connect( _take_damage )
+	update_hp( 99 )
 	pass # Replace with function body.
 
 
@@ -76,3 +85,31 @@ func AnimDirection() -> String:
 		return "right"
 	else:
 		return "up"
+
+
+func _take_damage( hurt_box : HurtBox ) -> void:
+	if invulnerable == true:
+		return
+	update_hp( -hurt_box.damage )
+	if hp < 0:
+		player_damaged.emit( hurt_box )
+	else:
+		player_damaged.emit( hurt_box )
+		update_hp( 99 )
+	pass
+
+
+func update_hp( delta : int ) -> void:
+	hp = clampi( hp + delta, 0, max_hp )
+	pass
+
+
+func make_invulnerable( _duration : float = 1.0 ) -> void:
+	invulnerable = true
+	hit_box.monitoring = false
+	
+	await get_tree().create_timer( _duration ).timeout
+	
+	invulnerable = false
+	hit_box.monitoring = true
+	pass

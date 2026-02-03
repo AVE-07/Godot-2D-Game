@@ -23,5 +23,5 @@ func AreaEntered( a : Area2D ) -> void:
 	if a is HitBox:
 		#jika benar maka akan terkena damage dari jumlah damage yang ditentukan
 		#dan hitbox akan mengeluarkan sinyal dengan menjalankan fungsi TakeDamage
-		a.TakeDamage( damage )
+		a.TakeDamage( self )
 	pass

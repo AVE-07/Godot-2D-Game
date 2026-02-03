@@ -4,11 +4,17 @@ class_name State extends Node
 #ini biar semua state ngeakses player sama tanpa perlu tulis ulang deklarasi
 ## Store a reference to the player that this State belongs to
 static var player : Player
+static var state_machine : PlayerStateMachine
 
 #ini sengaja dikosongin karena script ini cuman kontrak aja
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
+
+
+## What happens when we Initialize this state?
+func init() -> void:
+	pass
 
 
 #ini func bakal kepake saat FSM mau masuk ke player

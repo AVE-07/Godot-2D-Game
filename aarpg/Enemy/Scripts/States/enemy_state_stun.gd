@@ -11,6 +11,7 @@ class_name EnemyStateStun extends EnemyState
 @export_category( "AI" )
 #state akan menyerahkan perannya ke state lain, diubah lewat inspector
 @export var next_state : EnemyState
+var _damage_position : Vector2
 #mengatur arah awal state
 var _direction : Vector2
 #mengatur selesainya animasi state
@@ -27,7 +28,7 @@ func init() -> void:
 func enter() -> void:
 	enemy.invulnerable = true
 	_animation_finished = false
-	_direction = enemy.global_position.direction_to( enemy.player.global_position )
+	_direction = enemy.global_position.direction_to( _damage_position )
 	#menentukan arah
 	enemy.set_direction( _direction )
 	#menentukan gerak fisik
@@ -58,7 +59,8 @@ func physics( _delta: float ) -> EnemyState:
 	return null
 
 
-func _on_enemy_damaged() -> void:
+func _on_enemy_damaged( hurt_box : HurtBox ) -> void:
+	_damage_position = hurt_box.global_position
 	state_machine.change_state( self )
 
 

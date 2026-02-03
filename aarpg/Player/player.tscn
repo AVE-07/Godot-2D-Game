@@ -1,5 +1,6 @@
-[gd_scene load_steps=46 format=3 uid="uid://bf4esf57fcnh8"]
+[gd_scene load_steps=59 format=3 uid="uid://bf4esf57fcnh8"]
 
+[ext_resource type="Script" uid="uid://dorjnbl61x7mv" path="res://Player/Script/player.gd" id="1_8mwp6"]
 [ext_resource type="Texture2D" uid="uid://cnjbe50ydm6xx" path="res://Player/Sprites/Character/Shadow.png" id="2_o28un"]
 [ext_resource type="Texture2D" uid="uid://dj6g7mg0jalpu" path="res://Player/Sprites/Character/AttackSprite01.png" id="2_pisgm"]
 [ext_resource type="Texture2D" uid="uid://580am2r2felk" path="res://Player/Sprites/Character/idle_down.png" id="5_lfmf2"]
@@ -22,6 +23,9 @@
 [ext_resource type="Script" uid="uid://uwfv1cjd1iu6" path="res://Player/Script/player_interactions.gd" id="20_7emwf"]
 [ext_resource type="PackedScene" uid="uid://djcq2vu0heefb" path="res://GeneralNode/Hurtbox/hurt_box.tscn" id="20_n471f"]
 [ext_resource type="Script" uid="uid://c8o7jbq3caxx4" path="res://Player/Script/player_camera.gd" id="21_hshwv"]
+[ext_resource type="Script" uid="uid://358fy8iyr8q2" path="res://Player/Script/state_stun.gd" id="22_8viyr"]
+[ext_resource type="PackedScene" uid="uid://confu7nh7edw0" path="res://GeneralNode/Hitbox/hit_box.tscn" id="24_qemgg"]
+[ext_resource type="AudioStream" uid="uid://dens5gnyujqla" path="res://Player/Audio/hit_player.wav" id="26_sm0op"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5htga"]
 radius = 11.0
@@ -925,6 +929,118 @@ tracks/1/keys = {
 "values": [ExtResource("12_gpjlu")]
 }
 
+[sub_resource type="Animation" id="Animation_8viyr"]
+resource_name = "stun_down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_lfmf2")]
+}
+
+[sub_resource type="Animation" id="Animation_sm0op"]
+resource_name = "stun_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_o28un")]
+}
+
+[sub_resource type="Animation" id="Animation_76lrf"]
+resource_name = "stun_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_pisgm")]
+}
+
+[sub_resource type="Animation" id="Animation_efx54"]
+resource_name = "stun_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_b1ygp")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k53q1"]
 _data = {
 &"RESET": SubResource("Animation_4ntmi"),
@@ -939,13 +1055,88 @@ _data = {
 &"run_down": SubResource("Animation_00tjw"),
 &"run_left": SubResource("Animation_x3vf3"),
 &"run_right": SubResource("Animation_apopc"),
-&"run_up": SubResource("Animation_5htga")
+&"run_up": SubResource("Animation_5htga"),
+&"stun_down": SubResource("Animation_8viyr"),
+&"stun_left": SubResource("Animation_76lrf"),
+&"stun_right": SubResource("Animation_efx54"),
+&"stun_up": SubResource("Animation_sm0op")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8viyr"]
+radius = 9.055386
+
+[sub_resource type="Animation" id="Animation_755ss"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bbimk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m0h3t"]
+resource_name = "damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.40000004, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 1), Color(1, 1, 1, 0.29411766), Color(1, 1, 1, 1), Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 1), Color(1, 1, 1, 0.49019608), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("26_sm0op")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i4o1l"]
+_data = {
+&"RESET": SubResource("Animation_bbimk"),
+&"damaged": SubResource("Animation_m0h3t"),
+&"default": SubResource("Animation_755ss")
 }
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
+script = ExtResource("1_8mwp6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5htga")
@@ -1002,6 +1193,9 @@ script = ExtResource("11_apopc")
 script = ExtResource("16_n471f")
 attack_sound = ExtResource("18_b1ygp")
 
+[node name="Stun" type="Node" parent="StateMachine"]
+script = ExtResource("22_8viyr")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 editor_draw_limits = true
 script = ExtResource("21_hshwv")
@@ -1009,8 +1203,19 @@ script = ExtResource("21_hshwv")
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("18_b1ygp")
 max_polyphony = 4
 
 [node name="Interactions" type="Node2D" parent="."]
 script = ExtResource("20_7emwf")
+
+[node name="HitBox" parent="." instance=ExtResource("24_qemgg")]
+position = Vector2(0, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_8viyr")
+debug_color = Color(0.80784315, 0.83137256, 0, 0.41960785)
+
+[node name="EffectAnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i4o1l")
+}
