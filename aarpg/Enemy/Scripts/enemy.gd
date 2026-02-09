@@ -23,6 +23,7 @@ var player : Player
 var invulnerable : bool = false
 
 #@onready maksudnya variabel baru diisi setelah node masuk scene, dan bisa diambil child node
+#ini untuk animasi enemy dan efeknya
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 #ini untuk state_machine seperti animasi idle, walk, run, hit, dll
@@ -80,12 +81,14 @@ func set_direction( _new_direction : Vector2 ) -> bool:
 	return true
 
 
+#function yang jalan untuk update animasi
 func update_animation( state : String ) -> void:
 	#.play digunakan untuk jalankan animasi sesuai state sama AnimDirectionnya
 	animation_player.play( state + "_" + AnimDirection())
 	pass
 
 
+#function yang jalan untuk menentukan kalo kanan maka nilainya kanan
 func AnimDirection() -> String:
 	#kalo cardial_direction ke bawah nilai AnimeDirection bakal jadi "down", dst
 	if cardinal_direction == Vector2.DOWN:
@@ -98,10 +101,16 @@ func AnimDirection() -> String:
 		return "up"
 
 
+#function yang aktif saat hurt_box terkena hit_box
 func _take_damage( hurt_box : HurtBox ) -> void :
+	#jika stun bernilai benar maka kembalikan(stop function)
+	#menghindari eksploitas serangan beruntun
 	if invulnerable == true:
 		return
+	#damage yang diterima hurt_box akan langsung mengurangi hp
 	hp -= hurt_box.damage
+	#jika hp lebih dari 0 keluarkan sinyal damaged, jika kurang atau sama dengan 0
+	#maka keluarkan sinyal destroyed
 	if hp > 0:
 		enemy_damaged.emit( hurt_box )
 	else:

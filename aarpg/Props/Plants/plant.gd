@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 #fungsi yang aktif saat menerima signal kalo hitbox diserang
-func TakeDamage( _damage : int ) -> void:
+func TakeDamage( _damage : HurtBox ) -> void:
 	#fungsi yang aktif saat terkena seranga
 	#fungsi ini langsung menghapus entitas plant di map (kill)
 	queue_free()

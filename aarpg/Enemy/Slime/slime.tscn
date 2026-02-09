@@ -1016,6 +1016,7 @@ script = ExtResource("1_dd8l2")
 hp = 3
 
 [node name="HurtBox" parent="." instance=ExtResource("8_ylwq0")]
+modulate = Color(1, 0, 0.14509805, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -9)

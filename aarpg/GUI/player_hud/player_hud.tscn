@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://liaos53ylqfc" path="res://GUI/player_hud/heart_gui.tscn" id="3_yhjvm"]
 
 [node name="PlayerHud" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_oghrr")
 
 [node name="Control" type="Control" parent="."]
@@ -16,17 +17,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
-position = Vector2(291, 12)
+position = Vector2(390, 11)
 texture = ExtResource("2_4b3j6")
 region_enabled = true
 region_rect = Rect2(29, 0, 34, 8)
 
 [node name="HFlowContainer" type="HFlowContainer" parent="Control"]
 layout_mode = 0
-offset_left = 226.0
-offset_top = 20.0
-offset_right = 356.0
-offset_bottom = 48.0
+offset_left = 326.0
+offset_top = 16.0
+offset_right = 456.0
+offset_bottom = 44.0
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 2
 alignment = 1

@@ -34,7 +34,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#dipakai untuk baca input dengan nilai -1..1
 	#direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	#direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _physics_process( delta ):
+func _physics_process( _delta ):
 	move_and_slide()
 
 
@@ -86,11 +86,15 @@ func AnimDirection() -> String:
 	else:
 		return "up"
 
-
+#function yang aktif saat hurt_box menerima damage dari hit_box
 func _take_damage( hurt_box : HurtBox ) -> void:
+	#jika dalam keadaan kebal keluar dari function ini
 	if invulnerable == true:
 		return
+	#membuat damage yang di terima menjadi minus dan masuk ke function update_hp
 	update_hp( -hurt_box.damage )
+	#jika hp lebih dari 0, pemberitahuan disistem player terkena damage
+	#jika hp kurang dari 0, pemberitahuan disistem player terkena damage + hp nambah lagi (debugging)
 	if hp > 0:
 		player_damaged.emit( hurt_box )
 	else:
@@ -98,19 +102,25 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 		update_hp( 99 )
 	pass
 
-
+#function yang digunakan untuk mengubah hp
 func update_hp( delta : int ) -> void:
+	#pembatas hp, artinya hp awal akan di tambah (-hp dari hurtbox)
+	#hasilnya akan dibatasi tidak rendah dari 0 tapi tidak lebih max_hp
 	hp = clampi( hp + delta, 0, max_hp )
+	#setiap hp berubah GUI akan ikut berubah
 	PlayerHud.update_hp( hp, max_hp )
 	pass
 
-
+#function untuk kekebalan
 func make_invulnerable( _duration : float = 1.0 ) -> void:
+	#mengubah kekebalan menjadi bernilai benar
 	invulnerable = true
+	#mematikan hit_box supaya tidak dapat diserang lagi
 	hit_box.monitoring = false
-	
+	#menunggu sesuai durasi yang ada dengan default = 1 detik
 	await get_tree().create_timer( _duration ).timeout
-	
+	#mengubah kekebalan menjadi bernilai salah
 	invulnerable = false
+	#menyalakn hit_box supaya dapat diserang lagi
 	hit_box.monitoring = true
 	pass
