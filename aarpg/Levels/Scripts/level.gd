@@ -12,7 +12,9 @@ func _ready() -> void:
 	PlayerManager.set_as_parent( self )
 	LevelManager.level_load_started.connect( _free_level )
 
-
+#function untuk melepaskan player sebagai anak
 func _free_level() -> void:
+	#menjalankan func unparent_player di PlayerManager dengan terget diri sendiri
 	PlayerManager.unparent_player( self )
+	#menghapus node dari scene tree
 	queue_free()
