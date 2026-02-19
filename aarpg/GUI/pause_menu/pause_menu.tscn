@@ -97,7 +97,6 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 10
-text = "Your best drink in adventure!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -132,3 +131,6 @@ layout_mode = 2
 
 [node name="InventorySlot6" parent="Control/PanelContainer/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
+max_polyphony = 4

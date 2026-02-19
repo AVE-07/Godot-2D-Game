@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=8 format=3 uid="uid://bib8y413u713u"]
+
+[ext_resource type="Script" uid="uid://cyi4q5a6tmnxh" path="res://Items/item_effects/item_effect.gd" id="1_xwhp1"]
+[ext_resource type="AudioStream" uid="uid://bpknmsxnilntd" path="res://Items/item_effects/hp-up.wav" id="2_3wksx"]
+[ext_resource type="Script" uid="uid://ce64kr2d5gmcm" path="res://Items/Script/item_data.gd" id="2_ovoyb"]
+[ext_resource type="Script" uid="uid://dgrw4bowl6h54" path="res://Items/item_effects/item_effect_heal.gd" id="3_nj3b8"]
+[ext_resource type="Texture2D" uid="uid://b8x442f6ffnx2" path="res://Items/Sprite/items.png" id="5_xq26w"]
+
+[sub_resource type="Resource" id="Resource_0m7an"]
+script = ExtResource("3_nj3b8")
+audio = ExtResource("2_3wksx")
+metadata/_custom_type_script = "uid://dgrw4bowl6h54"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nido0"]
+atlas = ExtResource("5_xq26w")
+region = Rect2(192, 0, 32, 32)
+
+[resource]
+script = ExtResource("2_ovoyb")
+name = "Apple"
+description = "Good apple is dead apple"
+texture = SubResource("AtlasTexture_nido0")
+effects = Array[ExtResource("1_xwhp1")]([SubResource("Resource_0m7an")])
+metadata/_custom_type_script = "uid://ce64kr2d5gmcm"

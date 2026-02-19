@@ -4,6 +4,7 @@
 extends Node
 #referensi player dari treenya
 const PLAYER = preload("uid://bf4esf57fcnh8")
+const INVENTORY_DATA : InventoryData = preload("uid://b178vcvcbous1")
 #membuat PLAYER menjadi instance global dengan menjadi player
 var player : Player
 #membuat supaya spawn hanya sekali
