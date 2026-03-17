@@ -28,10 +28,13 @@ func add_player_instance() -> void:
 	add_child( player )
 	pass
 
-
+#function yang aktif untuk memberi tahu berapa health yang dimiliki player dan berguna untuk save
 func set_health( hp : int, max_hp : int ) -> void:
+	#max_hp yang diterima dan diubah menjadi max_hp milik player
 	player.max_hp = max_hp
+	#hp yang diterima dan diubah menjadi hp milik player
 	player.hp = hp
+	#menjalankan function update hp dengan parameter 0 di player script untuk refresh
 	player.update_hp( 0 )
 
 

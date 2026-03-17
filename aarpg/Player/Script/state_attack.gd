@@ -39,8 +39,10 @@ func Enter() -> void:
 	attacking = true
 	#membuat delay code untuk aktif setelah 0.075 detik
 	await get_tree().create_timer( 0.075 ).timeout
-	#mengaktifkan fungsi monitoring hurtbox yang ada di inpector
-	hurt_box.monitoring = true
+	if attacking:
+		#mengaktifkan fungsi monitoring hurtbox yang ada di inpector
+		hurt_box.monitoring = true
+	pass
 
 
 #saat state keluar, bisa diubah kedepannya
